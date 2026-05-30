@@ -1,6 +1,6 @@
 {
-  "name": "Percent Calculator",
-  "short_name": "PercentCalc",
+  "name": "โปรแกรมคำนวณ 60/40",
+  "short_name": "คิด 60/40",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#111827",
