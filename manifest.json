@@ -1,7 +1,9 @@
 {
+  "id": "/THT6040/",
   "name": "โปรแกรมคำนวณ 60/40",
   "short_name": "คิด 60/40",
-  "start_url": "index.html",
+  "start_url": "/THT6040/",
+  "scope": "/THT6040/",
   "display": "standalone",
   "background_color": "#111827",
   "theme_color": "#111827",
