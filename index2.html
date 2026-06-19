@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#111827">
+<title>Percent Calculator</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+h1{
+    margin:0 0 20px;
+    text-align:center;
+    font-size:28px;
+}
+
+.input-box{
+    margin-bottom:20px;
+}
+
+.options{
+    display:flex;
+    gap:10px;
+    margin-bottom:24px;
+}
+
+.options label{
+    flex:1;
+}
+
+.options input{
+    display:none;
+}
+
+.result{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+body{
+    margin:0;
+    font-family:sans-serif;
+    background:#f3f4f6;
+    color:#111827;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.card{
+    width:100%;
+    max-width:420px;
+    background:white;
+    border-radius:24px;
+    padding:24px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+    color:#6b7280;
+}
+
+input{
+    width:100%;
+    padding:16px;
+    border:1px solid #d1d5db;
+    border-radius:16px;
+    font-size:28px;
+    background:white;
+    color:#111827;
+    outline:none;
+}
+
+input:focus{
+    border-color:#3b82f6;
+}
+
+.percent-btn{
+    display:block;
+    text-align:center;
+    padding:14px;
+    border-radius:14px;
+    background:#e5e7eb;
+    font-size:20px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.options input:checked + .percent-btn{
+    background:#2563eb;
+    color:white;
+    font-weight:bold;
+}
+
+.result-box{
+    background:#f9fafb;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:18px;
+}
+
+.result-title{
+    color:#6b7280;
+    font-size:14px;
+    margin-bottom:8px;
+}
+
+.result-value{
+    font-size:34px;
+    font-weight:bold;
+    color:#111827;
+}
+
+.result-value100{
+    font-size:34px;
+    font-weight:bold;
+    color:#2c2099;
+}
+
+.result-value60{
+    font-size:34px;
+    font-weight:bold;
+    color:#28a745;
+}
+
+.result-value40{
+    font-size:34px;
+    font-weight:bold;
+    color:#d6150b;
+}
+
+.footer{
+    text-align:center;
+    margin-top:18px;
+    color:#9ca3af;
+    font-size:13px;
+}
+</style>
+</head>
+<script>
+
+<body>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("sw.js");
+  });
+}
+</script>
+
+<div class="card">
+
+    <h1>คิดให้ 60/40</h1>
+
+    <div class="input-box">
+        <label>กรอกตัวเลข</label>
+        <input type="number" id="num" placeholder="เช่น 30" oninput="calc()">
+    </div>
+
+    <div class="options">
+
+        <label>
+            <input type="radio" name="p" value="100" checked onchange="calc()">
+            <div class="percent-btn">100%</div>
+        </label>
+
+        <label>
+            <input type="radio" name="p" value="60" onchange="calc()">
+            <div class="percent-btn">60%</div>
+        </label>
+
+        <label>
+            <input type="radio" name="p" value="40" onchange="calc()">
+            <div class="percent-btn">40%</div>
+        </label>
+
+    </div>
+
+    <div class="result">
+
+        <div class="result-box">
+            <div class="result-title">100%</div>
+            <div class="result-value100" id="r100">0</div>
+        </div>
+
+        <div class="result-box">
+            <div class="result-title">60%</div>
+            <div class="result-value60" id="r60">0</div>
+        </div>
+
+        <div class="result-box">
+            <div class="result-title">40%</div>
+            <div class="result-value40" id="r40">0</div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Copyright @ TungNing
+    </div>
+
+</div>
+
+<script>
+function calc(){
+
+    let num = parseFloat(document.getElementById("num").value);
+
+    if(isNaN(num)){
+        document.getElementById("r100").innerText = "0";
+        document.getElementById("r60").innerText = "0";
+        document.getElementById("r40").innerText = "0";
+        return;
+    }
+
+    let p = document.querySelector('input[name="p"]:checked').value;
+
+    let full = num / (p / 100);
+
+    document.getElementById("r100").innerText =
+        full.toFixed(2);
+
+    document.getElementById("r60").innerText =
+        (full * 0.6).toFixed(2);
+
+    document.getElementById("r40").innerText =
+        (full * 0.4).toFixed(2);
+}
+</script>
+
+</body>
+</html>
